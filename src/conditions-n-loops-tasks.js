@@ -21,8 +21,8 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  return number >= 0;
 }
 
 /**
@@ -38,8 +38,16 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  if (a >= b && a >= c) {
+    return a;
+  }
+
+  if (b >= a && b >= c) {
+    return b;
+  }
+
+  return c;
 }
 
 /**
@@ -60,8 +68,15 @@ function getMaxNumber(/* a, b, c */) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  const isSameRow = queen.y === king.y;
+
+  const isSameColumn = queen.x === king.x;
+
+  const isSameDiagonal =
+    Math.abs(queen.x - king.x) === Math.abs(queen.y - king.y);
+
+  return isSameRow || isSameColumn || isSameDiagonal;
 }
 
 /**
@@ -82,8 +97,16 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  if (a <= 0 || b <= 0 || c <= 0) {
+    return false;
+  }
+
+  if (a + b <= c || a + c <= b || b + c <= a) {
+    return false;
+  }
+
+  return a === b || b === c || a === c;
 }
 
 /**
@@ -100,8 +123,21 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  let result = '';
+  let remaining = num;
+
+  const symbols = ['X', 'IX', 'V', 'IV', 'I'];
+  const values = [10, 9, 5, 4, 1];
+
+  for (let i = 0; i < symbols.length; i += 1) {
+    while (remaining >= values[i]) {
+      result += symbols[i];
+      remaining -= values[i];
+    }
+  }
+
+  return result;
 }
 
 /**
